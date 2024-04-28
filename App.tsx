@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -5,13 +6,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SettingPage from './src/screens/setting';
 import HomePage from './src/screens/home';
 import ListPage from './src/screens/list';
-import {
-  MaterialCommunityIcons,
-  Ionicons,
-  MaterialIcons,
-} from '@expo/vector-icons';
-import {Image} from 'react-native';
-// import { MaterialIcons } from 'react-native-vector-icons';
+import {Image, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,20 +16,27 @@ function MyTabs() {
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-
+          let iconName = '';
           if (route.name === 'Home') {
-            iconName = focused ? 'home-sharp' : 'home-outline';
-          } else if (route.name === 'Setting') {
-            iconName = focused ? 'settings-sharp' : 'settings-outline';
-          } else if (route.name === 'ListPage') {
-            iconName = focused ? 'list-sharp' : 'list-outline';
+            iconName = focused ? 'add-circle' : 'add-circle-outline';
+          } else if (route.name === 'List') {
+            iconName = focused ? 'person' : 'person-outline';
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-      })}>
+        headerShown: false,
+      })}
+      tabBarOptions={{
+        activeTintColor: 'tomato', //当前项目激活后的颜色
+        inactiveTintColor: 'gray', //未激活的颜色
+      }}>
+      {/* options={{
+          tabBarLabel: 'Home',
+
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="home" color={color} size={size} />
+          ),
+        }} */}
       <Tab.Screen name="Home" component={HomePage} />
       <Tab.Screen name="List" component={ListPage} />
       <Tab.Screen name="Setting" component={SettingPage} />
@@ -73,3 +76,14 @@ function App() {
 }
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 40,
+  },
+});
