@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
 import Circle from '../components/circle';
 
-const ITEM_WIDTH = 60; // 假设每个Circle组件的宽度是100
+const ITEM_WIDTH = 30; // 假设每个Circle组件的宽度是100
 const ITEM_SPACING = 10; // 假设您想要在每个Circle之间添加10的间距
 
 const HorizontalScrollList = () => {

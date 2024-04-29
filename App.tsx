@@ -1,89 +1,29 @@
-/* eslint-disable react/no-unstable-nested-components */
-import * as React from 'react';
+import React from 'react';
+import {View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import SettingsScreen from './src/screens/setting';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SettingPage from './src/screens/setting';
-import HomePage from './src/screens/home';
-import ListPage from './src/screens/list';
-import {Image, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Login from './src/screens/login';
+import Index from './src/screens/index';
+import List from './src/screens/list';
+import Setting from './src/screens/setting'
+import EmptyScreen from './src/screens/emptyScreen';
+import Home from './src/screens/home'
 
-const Tab = createBottomTabNavigator();
-
-function MyTabs() {
+export default function App() {
+  const Stack = createNativeStackNavigator();
   return (
-    <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName = '';
-          if (route.name === 'Home') {
-            iconName = focused ? 'add-circle' : 'add-circle-outline';
-          } else if (route.name === 'List') {
-            iconName = focused ? 'person' : 'person-outline';
-          }
-          return <Icon name={iconName} size={size} color={color} />;
-        },
-        headerShown: false,
-      })}
-      tabBarOptions={{
-        activeTintColor: 'tomato', //当前项目激活后的颜色
-        inactiveTintColor: 'gray', //未激活的颜色
-      }}>
-      {/* options={{
-          tabBarLabel: 'Home',
-
-          tabBarIcon: ({color, size}) => (
-            <Ionicons name="home" color={color} size={size} />
-          ),
-        }} */}
-      <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="List" component={ListPage} />
-      <Tab.Screen name="Setting" component={SettingPage} />
-    </Tab.Navigator>
-  );
-}
-
-function LogoTitle() {
-  return (
-    <Image
-      style={{width: 50, height: 50}}
-      source={require('./src/assets/vue-logo.png')}
-    />
-  );
-}
-
-const Stack = createNativeStackNavigator();
-function App() {
-  return (
-    <NavigationContainer>
+    <NavigationContainer
+      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Stack.Navigator>
-        <Stack.Screen
-          name="MY App"
-          component={MyTabs}
-          options={{
-            headerBackTitle: 'Custom Back',
-            headerBackTitleStyle: {fontSize: 30},
-          }}
-        />
+        <Stack.Screen name="Index" component={Index} />
+        <Stack.Screen name="Setting" component={Setting} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="List" component={List} />
+        <Stack.Screen name="Home" component={EmptyScreen} />
+        <Stack.Screen name="EmptyScreen" component={EmptyScreen} />
 
-        {/* <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="List" component={ListPage} />
-        <Stack.Screen name="Setting" component={SettingPage} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 40,
-  },
-});

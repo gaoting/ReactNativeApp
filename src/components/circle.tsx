@@ -6,7 +6,7 @@ const Circle = props => {
     <ProgressCircle
       percent={props.percent}
       radius={props.radius}
-      borderWidth={8}
+      borderWidth={5}
       color="#3399FF"
       shadowColor="#999"
       bgColor="#fff"></ProgressCircle>
