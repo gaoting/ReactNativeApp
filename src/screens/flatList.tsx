@@ -1,9 +1,9 @@
 import React from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
-import Circle from '../components/circle';
+import CircleComponent from '../components/circle';
 
-const ITEM_WIDTH = 30; // 假设每个Circle组件的宽度是100
-const ITEM_SPACING = 10; // 假设您想要在每个Circle之间添加10的间距
+const ITEM_WIDTH = 26;
+const ITEM_SPACING = 10;
 
 const HorizontalScrollList = () => {
   const circleList = Array.from({length: 10}, (_, i) => ({
@@ -11,8 +11,6 @@ const HorizontalScrollList = () => {
     title: `item${i + 1}`,
     value: Math.floor(Math.random() * 101),
   }));
-
-  const keyExtractor = item => item.id;
 
   // 定义样式
   const styles = StyleSheet.create({
@@ -45,7 +43,7 @@ const HorizontalScrollList = () => {
                 ? styles.lastItemContainer
                 : styles.itemContainer
             }>
-            <Circle percent={item.value} radius={ITEM_WIDTH / 2} />
+            <CircleComponent percent={item.value} radius={ITEM_WIDTH / 2} />
           </View>
         ))}
       </View>
@@ -54,4 +52,3 @@ const HorizontalScrollList = () => {
 };
 
 export default HorizontalScrollList;
-

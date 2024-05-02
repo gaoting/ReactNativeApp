@@ -1,25 +1,27 @@
 import React, {useCallback} from 'react';
 import {Text, View, Button} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import List from './list';
 import Home from './home';
 import Setting from './setting';
+import IconComponent from '../components/icons';
 
 const Tab = createBottomTabNavigator();
-MaterialCommunityIcons.loadFont();
-
 
 function HomeTabs() {
   return (
-    <Tab.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <IconComponent name="home" color={color} size={26} />
           ),
         }}
       />
@@ -29,7 +31,11 @@ function HomeTabs() {
         options={{
           tabBarLabel: 'List',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <IconComponent
+              name="format-list-bulleted"
+              color={color}
+              size={26}
+            />
           ),
         }}
       />
@@ -39,7 +45,7 @@ function HomeTabs() {
         options={{
           tabBarLabel: 'Setting',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <IconComponent name="cog" color={color} size={26} />
           ),
         }}
       />
